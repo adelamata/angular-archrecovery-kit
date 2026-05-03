@@ -15,7 +15,7 @@ Focus on reconstructing the current shape of the system.
 
 ## User input when using this prompt
 
-If ${INPUT} is detected as a accept language, then the output should be in that language. Otherwise, the output should be in English.
+If ${input} is detected as a accept language, then the output should be in that language. Otherwise, the output should be in English.
 
 When you run this prompt, provide the following input:
 
@@ -86,9 +86,8 @@ Determine:
 
 This should explain **how engineers are expected to navigate the codebase**.
 
-If you detect a clear architectural pattern (e.g. domain-driven design, feature-based organization, layered architecture), describe it here.
+If you find a folder called features, domains, containers, or something similar, and they are probably functional groups, list them all and give a brief description.
 
-If you detect a folder named features, domain or similar, inspect its structure to determine whether it’s organized by business domain or by technical artifact.
 
 ---
 
