@@ -1,131 +1,219 @@
 # /inventory
 
-Build an ultra-compact mental map of the current Angular project for immediate onboarding.
+Build a high-level architectural inventory of the current Angular project.
 
-Your goal is to answer:
-👉 “What does a new engineer need to understand in 5 minutes to orient themselves inside this codebase?”
+Your goal is to describe **how the system is actually organized today** — both from a functional perspective and from a technical perspective.
 
-Do not perform deep architectural audits.
-Do not explain implementation details.
-Do not list the full file tree.
-Do not propose refactors.
+This inventory is intended for AI-assisted architectural understanding and onboarding.  
+It should help answer a simple question:
 
----
+**If a new engineer joined tomorrow, what would they need to understand in five minutes to orient themselves inside the codebase?**
 
-Generates output in English by default if the {$input} does not come in a recognized language
+Do not propose refactors yet.  
+Do not perform a deep dependency audit.  
+Focus on reconstructing the current shape of the system.
 
----
+## User input when using this prompt
 
-## 🎯 Expected Output (MANDATORY)
+If ${input} is detected as a accept language, then the output should be in that language. Otherwise, the output should be in English.
 
-Return exactly the following sections, write it in a clear, concise manner, and use the provided emojis for better readability and within a file named `inventory.md` inside the `.angular-arch-kit/memory/` folder:
+When you run this prompt, provide the following input:
 
----
+## What to inspect first
 
-## 0. General context
+Start by identifying the project’s functional structure before diving into implementation details.
 
-Provide a concise summary of:
+### 1. Functional map
 
-- application type (backoffice, SaaS, internal tool, portal, etc.)
-- Angular version if detectable
-- monorepo or single repository
-- approximate scale (small / medium / large)
-- high-level architectural style if visible
+Determine:
 
-Keep this section short.
+- What business problem does the application solve?
+- What are the main product areas, workflows, or domains?
+- What are the core user-facing capabilities?
 
----
+Use signals such as:
 
-## 1. 🧭 What this system is
-- What the application does in 1–3 sentences
-- Functional domain (e.g., CRM, dashboard, e-commerce, etc.)
-- Primary users of the system
+- top-level routes
+- navigation structure
+- feature names
+- major screens
+- business-oriented folder naming
 
----
-
-## 2. 🧱 High-level architecture (Angular mental model)
-Explain the system structure at a macro level:
-
-- Feature-based vs module-based vs standalone components
-- Routing strategy (lazy loading, feature routes, etc.)
-- State management (NgRx / services / signals / hybrid)
-- Communication patterns between features
+The objective is to extract the **main functional domains of the application**.
 
 ---
 
-## 3. 📦 Core building blocks
-List ONLY the essentials:
+### 2. Routing as the primary architectural map
 
-- Core module / core services (auth, http, interceptors)
-- Shared layer (UI kit, pipes, directives)
-- Main feature modules
-- Layout / shell / app bootstrap structure
+Inspect:
 
----
+- `app.routes.ts`
+- `app-routing.module.ts`
+- lazy-loaded routes
+- route guards
+- layouts / shells
 
-## 4. 🔁 Data flow (how things move)
-Explain simply:
+Capture:
 
-- How a request enters (UI → service → API)
-- Where state lives
-- How UI ↔ backend synchronization works
-- If a store exists: how a typical action flows
+- major application areas
+- domain boundaries
+- authenticated vs public sections
+- feature isolation strategy
 
----
-
-## 5. 🧩 Key mental entry points
-Where a new developer should look first:
-
-- Root app routing
-- Main layout / shell component
-- Auth flow entry point
-- 1–2 key features (most representative ones)
+In large Angular applications, **routing usually reveals the real architecture faster than code-level inspection**.
 
 ---
 
-## 6. ⚠️ Important conventions (only if critical)
-Include only if they actually exist:
+### 3. Structural organization of the codebase
 
-- Relevant naming conventions
-- Folder structure rules
-- Architectural constraints
-- Avoided anti-patterns
+Identify how the code is partitioned.
 
----
+Look for patterns such as:
 
-## 7. Structural map
+- `core`
+- `shared`
+- `features`
+- `domain`
+- `data-access`
+- `ui`
+- `state`
 
-Show only **high-level project structure**. Describe generally the domain of each feature within the example.
+Determine:
 
-Example:
+- whether the system is organized by business domain or by technical artifact
+- whether layers are explicit or implicit
+- whether boundaries are clear or porous
 
-```text
-src/app/
-  core/
-  shared/
-  features/
-    customers/ 
-    orders/ 
-    billing/ 
-```
+This should explain **how engineers are expected to navigate the codebase**.
 
 ---
 
-## 🚫 Exclusions (VERY IMPORTANT)
+### 4. Application bootstrap and global runtime behavior
 
-Do not include:
-- Full file listing
-- Deep implementation details
-- Complex business logic explanations
-- Minor dependencies
-- Code snippets
+Inspect:
+
+- `main.ts`
+- application bootstrap
+- global providers
+- interceptors
+- app initializers
+- authentication initialization
+- configuration loading
+- feature flags
+
+Answer:
+
+**What happens before the first screen is rendered?**
+
+This usually reveals important cross-cutting architectural behavior.
 
 ---
 
-## 🧠 Style
+### 5. Data flow and execution path
 
-- Maximum clarity
-- Designed for 5-minute reading time
-- “Senior onboarding cheat sheet” level
-- Clear technical English
-- Prioritize understanding over completeness
+Pick one representative business flow and follow it end to end.
+
+Examples:
+
+- login
+- load dashboard
+- create entity
+- save form
+- fetch user profile
+
+Trace:
+
+**UI → component → service/facade → state → API**
+
+Identify:
+
+- state management approach
+- facades or orchestration layers
+- side effects
+- asynchronous boundaries
+- ownership of business logic
+
+Understanding one complete vertical flow usually provides far more insight than reading isolated files.
+
+---
+
+### 6. Domain model and data structures
+
+Inspect:
+
+- models
+- interfaces
+- DTOs
+- mappers
+- adapters
+
+Identify:
+
+- core business entities
+- naming conventions
+- API-to-domain translation patterns
+- whether backend DTOs leak directly into UI
+
+This helps reconstruct the **actual domain language of the application**.
+
+---
+
+### 7. Backend integration boundaries
+
+Inspect:
+
+- API clients
+- `data-access`
+- HTTP services
+- interceptors
+- authentication
+- error handling
+- caching
+
+Determine:
+
+- where backend boundaries live
+- whether the frontend orchestrates logic or mostly renders remote data
+- whether integration patterns are centralized or distributed
+
+---
+
+### 8. Team conventions and architectural signals
+
+Look for conventions in:
+
+- file naming
+- folder naming
+- suffixes such as `*.facade.ts`, `*.store.ts`, `*.adapter.ts`
+- selectors
+- actions
+- providers
+- feature boundaries
+
+These conventions often reveal **the intended mental model of the system**.
+
+---
+
+## Output requirements
+
+Produce a concise architectural inventory that captures:
+
+- functional domains
+- routing structure
+- architectural layers
+- state management approach
+- backend integration boundaries
+- notable conventions
+- important global runtime behavior
+
+Prefer describing **what exists today**, not what should exist.
+
+---
+
+## Output location
+
+Write the result to:
+
+`.angular-arch-kit/memory/inventory.md`
+
+This file acts as persistent architectural memory for AI-assisted exploration of the codebase.
