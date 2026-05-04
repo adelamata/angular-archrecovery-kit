@@ -23,12 +23,14 @@ A feature must have at least 2:
 - owns isolated providers
 - has bounded composition
 
-## Output Format
+## Output Format and location
 Return only Markdown using these headings:
 - `# Feature Discovery`
 - `## Candidate Features`
 - `## Evidence`
 - `## Confidence`
+
+Export this output to `.angular-arch-kit/memory/feature-discovery.md` in the repository.
 
 ## Output
 - candidate features
