@@ -53,11 +53,11 @@ Always follow this order:
 1. bootstrap
 2. feature-discovery
 3. inventory
-4. feature-inventory
-5. task-brief
-6. impact-analysis
-7. safe-change
-8. decision-log
+4. feature-inventory (WIP)
+5. task-brief (WIP)
+6. impact-analysis (WIP)
+7. safe-change (WIP)
+8. decision-log (WIP)
 
 
 Skipping steps reduces correctness and increases risk.
