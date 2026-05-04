@@ -1,15 +1,15 @@
-# Task Summary
+# Task
 
-# Affected Bounded Context
+## Scope
 
-# Relevant Files
+## Affected Areas
 
-# Integration Surfaces
+## Files
 
-# Architectural Constraints
+## Dependencies
 
-# Expected Side Effects
+## Constraints
 
-# Out of Scope
+## Out of Scope
 
-# Validation Questions
+## Validation

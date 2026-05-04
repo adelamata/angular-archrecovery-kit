@@ -4,14 +4,16 @@
 
 ## Decision
 
-## Alternatives considered
+## Alternatives
 
-## Impact
+## Consequences
 
-## Affected bounded contexts
+## Affected Contexts
 
 ## Reasoning
 
+## Risks
+
 ## Follow-ups
 
-## Risk level (low | medium | high)
+## Confidence

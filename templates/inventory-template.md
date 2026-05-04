@@ -4,14 +4,12 @@
 
 # Feature Boundaries
 
-# Shared Platform Capabilities
+# Shared Capabilities
 
 # Dependency Topology
 
-# State and Data Flow
+# State Model
 
-# Complexity Signals
+# Complexity Hotspots
 
 # Safe Decomposition Candidates
-
-# Five-Minute Onboarding

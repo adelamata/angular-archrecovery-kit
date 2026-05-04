@@ -1,21 +1,15 @@
-# Feature Purpose
+# Feature
 
-# Ownership Boundary
+## Responsibility
 
-# Entrypoints
+## Entry Points
 
-# Internal Composition
+## State Ownership
 
-# State Ownership
+## Dependencies
 
-# External Dependencies
+## Integration Contracts
 
-# Inbound Consumers
+## Internal Structure
 
-# Outbound Consumers
-
-# Integration Contracts
-
-# Complexity Signals
-
-# Safe Local Reasoning Boundaries
+## Complexity Signals
