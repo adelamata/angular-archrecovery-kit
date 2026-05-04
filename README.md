@@ -1,308 +1,295 @@
-# angular-arch-kit v1
+# angular-arch-kit v1.1 — Guide & Usage
 
-Production-oriented repository scaffold for architecture recovery and bounded-context AI workflows in large Angular codebases.
-
-## Repository structure
-
-```text
-angular-arch-kit/
-  README.md
-  prompts/
-    inventory.md
-    feature-inventory.md
-    task-brief.md
-    impact-analysis.md
-    safe-change.md
-  templates/
-    inventory-template.md
-    feature-template.md
-    task-template.md
-  memory/
-    inventory.md
-    feature-map/
-    tasks/
-    decisions/
-  commands/
-    inventory.md
-    feature.md
-    task.md
-```
+Deterministic Architecture Recovery Framework for Large Angular Codebases
 
 ---
 
-## README.md
+# 🧠 What is angular-arch-kit?
 
-### Purpose
+`angular-arch-kit` is a structured workflow for understanding and safely modifying large Angular applications.
 
-Create durable architectural context before localized code changes.
+It is designed for:
 
-The repository is designed for large Angular systems where understanding architecture is more important than generating code immediately.
+- human engineers onboarding into large codebases
+- AI-assisted development workflows
+- architecture recovery in undocumented systems
+- safe, incremental feature changes
 
-### Core operating principle
+It is NOT a code generator or refactoring tool.
 
-Persist context once.
-Reuse it many times.
-
-### Recommended workflow
-
-```text
-inventory
-  ↓
-feature-inventory
-  ↓
-task-brief
-  ↓
-impact-analysis
-  ↓
-safe-change
-```
-
-### Operating rules
-
-- Do not scan the entire repository for every task.
-- Prefer bounded-context exploration.
-- Preserve architectural context across iterations.
-- Prefer small localized interventions.
-- Do not refactor opportunistically.
+It is a **deterministic architecture reasoning pipeline**.
 
 ---
 
-## prompts/inventory.md
+# 🎯 Core objective
 
-Use the deterministic architecture inventory prompt.
+Turn a complex Angular application into:
 
-Goal:
-
-Extract runtime structure, feature boundaries, shared platform capabilities, dependency topology, state flow, and safe decomposition candidates.
-
-Write output to:
-
-```text
-.angular-arch-kit/memory/inventory.md
-```
+- a stable architectural model
+- clearly defined feature boundaries (bounded contexts)
+- reusable knowledge across tasks and agents
+- safe execution plans for code changes
 
 ---
 
-## prompts/feature-inventory.md
+# ⚙️ Core principle
 
-```md
-Analyze only the requested feature.
+> No action without structured context.
 
-Use:
+Every change must pass through:
 
-- .angular-arch-kit/memory/inventory.md
+1. understanding the system
+2. isolating the feature
+3. defining the task
+4. analyzing impact
+5. executing safely
 
-Do not scan the full repository.
+---
 
-A feature should be analyzed as a bounded context.
+# 🧭 Execution pipeline (IMPORTANT)
 
-Describe:
+Always follow this order:
 
-- feature purpose
-- ownership boundary
+1. bootstrap
+2. feature-discovery
+3. inventory
+4. feature-inventory
+5. task-brief
+6. impact-analysis
+7. safe-change
+8. decision-log
+
+
+Skipping steps reduces correctness and increases risk.
+
+---
+
+# 📦 Step-by-step explanation
+
+## 1. bootstrap
+
+Finds where the system starts.
+
+- entrypoints (main.ts, app.config.ts)
+- root providers
+- routing root
+- runtime initialization
+
+👉 Output: starting point for analysis
+
+---
+
+## 2. feature-discovery
+
+Detects candidate features.
+
+Uses only structural signals:
+
+- routing ownership
+- providers scope
+- runtime composition
+
+❗ Folder structure is NOT reliable enough alone.
+
+👉 Output: list of feature candidates
+
+---
+
+## 3. inventory
+
+Builds global architecture model.
+
+- validates feature candidates
+- builds runtime map
+- defines dependency topology
+- describes state & data flow
+- identifies complexity areas
+
+👉 Output: global system architecture
+
+---
+
+## 4. feature-inventory
+
+Deep analysis of one feature (bounded context).
+
+Includes:
+
+- responsibility
 - entrypoints
-- internal composition
 - state ownership
-- external dependencies
-- inbound consumers
-- outbound consumers
+- dependencies
 - integration contracts
-- local complexity
-- safe local reasoning boundaries
+- internal structure
 
-Write output to:
-
-.angular-arch-kit/memory/feature-map/<feature-name>.md
-```
+👉 Output: feature-level architecture model
 
 ---
 
-## prompts/task-brief.md
+## 5. task-brief
 
-```md
-Prepare an execution-ready bounded-context task brief.
+Defines a safe execution unit before coding.
 
-Use:
+- scope definition
+- affected areas
+- constraints
+- dependencies involved
+- out-of-scope boundaries
 
-- global inventory
-- relevant feature inventory
-
-Determine:
-
-- affected bounded context
-- relevant files and entrypoints
-- expected integration surfaces
-- required architectural context
-- likely side effects
-- out-of-scope areas
-- uncertainty requiring validation
-
-Do not implement.
-
-Write output to:
-
-.angular-arch-kit/memory/tasks/<task-name>.md
-```
+👉 Output: execution plan
 
 ---
 
-## prompts/impact-analysis.md
+## 6. impact-analysis
 
-```md
-Analyze change impact before implementation.
+Evaluates risk before changing code.
 
-Using task brief and architectural context, identify:
+- dependency propagation
+- shared services impact
+- state risks
+- routing risks
+- cross-feature effects
 
-- directly affected areas
-- indirectly affected areas
-- dependency propagation risks
-- shared contracts impacted
-- state coordination risks
-- runtime composition risks
-- validation surfaces
-
-Do not propose implementation.
-```
+👉 Output: risk assessment
 
 ---
 
-## prompts/safe-change.md
+## 7. safe-change
 
-```md
-Implement only the requested localized change.
-
-Use:
-
-- task brief
-- feature inventory
-- impact analysis
+Executes minimal and safe modifications.
 
 Rules:
 
-- preserve existing architecture
-- minimize modification surface
-- avoid opportunistic refactors
-- do not broaden scope
-- preserve contracts unless explicitly required
+- no scope expansion
+- no opportunistic refactors
+- modify only what is required
+- preserve architecture
+- respect boundaries
 
-Before editing, explain:
-
-- exact files to modify
-- reason for each modification
-- expected behavioral effect
-```
+👉 Output: code changes
 
 ---
 
-## templates/inventory-template.md
+## 8. decision-log
 
-```md
-# System Overview
+Records architectural decisions.
 
-# Runtime Map
+Used for:
 
-# Feature Boundaries
-
-# Shared Platform Capabilities
-
-# Dependency Topology
-
-# State and Data Flow
-
-# Complexity Signals
-
-# Safe Decomposition Candidates
-
-# Five-Minute Onboarding
-```
+- traceability
+- future debugging
+- avoiding repeated analysis
+- team alignment
 
 ---
 
-## templates/feature-template.md
+# 🧩 Core rules
 
-```md
-# Feature Purpose
+## 1. Bounded context first
 
-# Ownership Boundary
-
-# Entrypoints
-
-# Internal Composition
-
-# State Ownership
-
-# External Dependencies
-
-# Inbound Consumers
-
-# Outbound Consumers
-
-# Integration Contracts
-
-# Complexity Signals
-
-# Safe Local Reasoning Boundaries
-```
+Never modify code without isolating the feature first.
 
 ---
 
-## templates/task-template.md
+## 2. Evidence hierarchy
 
-```md
-# Task Summary
+Always prioritize:
 
-# Affected Bounded Context
+runtime > providers > routing > services > folder structure
 
-# Relevant Files
-
-# Integration Surfaces
-
-# Architectural Constraints
-
-# Expected Side Effects
-
-# Out of Scope
-
-# Validation Questions
-```
 
 ---
 
-## commands/inventory.md
+## 3. No full repo scan (except inventory)
 
-Run the inventory prompt and persist output.
-
----
-
-## commands/feature.md
-
-Run feature-inventory for one bounded context.
-
-Example:
-
-```text
-feature auth
-```
+Avoid global scanning in feature-level tasks.
 
 ---
 
-## commands/task.md
+## 4. No assumptions
 
-Create a task brief for a localized change.
-
-Example:
-
-```text
-task add-authorization-flow
-```
+If something is not observable → mark as uncertain.
 
 ---
 
-## First practical usage
+## 5. No refactors during analysis
 
-1. Run inventory once.
-2. Generate feature inventories only for actively touched domains.
-3. Create task brief before modifications.
-4. Run impact analysis for shared or sensitive areas.
-5. Apply safe-change only after scope is explicit.
+Refactoring only allowed in `safe-change` and only if required.
 
+---
+
+# 🧠 Mental model
+
+Think of this system as:
+
+> a pipeline that reduces uncertainty before touching code
+
+Not:
+
+> a chatbot that explains code
+
+---
+
+# 🚀 Typical usage flows
+
+## Full system understanding
+
+bootstrap → feature-discovery → inventory
+
+
+## Understand a specific domain
+
+feature-inventory (auth, billing, etc.)
+
+## Prepare a change
+
+task-brief → impact-analysis
+
+## Execute change safely
+
+safe-change
+
+## Record architectural decision
+
+decision-log
+
+
+---
+
+# ⚠️ What this is NOT
+
+- not a refactoring tool
+- not a code generator
+- not a documentation replacement
+- not a static analysis tool
+
+---
+
+# 🧠 Why this works
+
+Large Angular codebases fail due to:
+
+- unclear boundaries
+- implicit architecture
+- uncontrolled dependency flow
+- lack of shared mental model
+
+This framework enforces:
+
+- explicit structure
+- bounded contexts
+- deterministic analysis steps
+- safe modification workflow
+
+---
+
+# 🏁 Summary
+
+`angular-arch-kit` is a deterministic architecture reasoning system for Angular applications.
+
+It allows teams and AI agents to:
+
+- understand large codebases faster
+- reduce uncertainty before changes
+- avoid cross-feature breakage
+- operate within safe bounded contexts
