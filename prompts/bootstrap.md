@@ -15,14 +15,14 @@ Identify where the Angular application starts and how runtime composition is bui
 
 ## Output Format and location
 
-### Primary output: `.angular-arch-kit/memory/bootstrap.md`
+### Primary output: `.angular-arch-kit/memory/bootstrap.output.md`
 Return only Markdown using these headings:
 - `# Bootstrap Analysis`
 - `## Entrypoints`
 - `## Runtime Composition Map`
 - `## Initial Anchor`
 
-### Secondary output: `.angular-arch-kit/docs/bootstrap-risks.md`
+### Secondary output: `.angular-arch-kit/docs/bootstrap-risks.output.md`
 For each step in the bootstrap sequence, document:
 - `# Bootstrap Risks`
 - `## [Step Name]` (e.g., Environment, CSP, AppModule, Providers, Store, Router, Translations)
