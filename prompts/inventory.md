@@ -26,7 +26,7 @@ Return only Markdown using these headings:
 - `## Shared Capabilities`
 - `## Complexity Hotspots`
 
-Export this output to `.angular-arch-kit/memory/inventory.md` in the repository.
+Export this output to `.angular-arch-kit/memory/inventory.output.md` in the repository.
 
 ## Constraints
 - Do not discover new features
