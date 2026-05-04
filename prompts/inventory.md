@@ -16,7 +16,7 @@ MUST use feature-discovery output.
 - describe state model
 - identify shared capabilities
 
-## Output Format
+## Output Format and location
 Return only Markdown using these headings:
 - `# Inventory`
 - `## Validated Features`
@@ -25,6 +25,8 @@ Return only Markdown using these headings:
 - `## State Model`
 - `## Shared Capabilities`
 - `## Complexity Hotspots`
+
+Export this output to `.angular-arch-kit/memory/inventory.md` in the repository.
 
 ## Constraints
 - Do not discover new features
