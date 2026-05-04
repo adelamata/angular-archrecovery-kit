@@ -1,4 +1,7 @@
-# /inventory
+---
+description: 'Build a high-level architectural inventory of the current Angular project. This inventory is intended for AI-assisted architectural understanding and onboarding. It should help answer a simple question: If a new engineer joined tomorrow, what would they need to understand in five minutes to orient themselves inside the codebase? Focus on reconstructing the current shape of the system without proposing refactors or performing deep dependency audits.'
+tools: ['codebase', 'editFiles']
+---
 
 Build a high-level architectural inventory of the current Angular project.
 
@@ -23,6 +26,17 @@ When you run this prompt, provide the following input:
 
 Start by identifying the project’s functional structure before diving into implementation details.
 
+### 0. Technology stack and architectural style
+- Identify the Angular version and major libraries used (e.g., NgRx, Akita, Angular Material).
+- Determine if the architecture follows a known style (e.g., layered, feature-based, micro-frontends).
+- Note any unique architectural patterns or deviations from common Angular practices.
+- This sets the context for understanding the architectural choices made in the codebase.
+- Understanding the technology stack and architectural style provides a foundation for interpreting the rest of the inventory.
+- It helps identify the conventions and patterns that are likely to be present in the codebase.
+- It also allows for better communication of architectural insights to other engineers who may be familiar with those styles or technologies.
+- This step is crucial for framing the architectural inventory in a way that is relevant and actionable for the team.
+- It also helps identify potential areas for improvement or refactoring based on the chosen architectural style and technology stack.
+
 ### 1. Functional map
 
 Determine:
@@ -39,7 +53,7 @@ Use signals such as:
 - major screens
 - business-oriented folder naming
 
-The objective is to extract the **main functional domains of the application**.
+The objective is to extract the **main functional domains of the application**. Explain each domain a three or four sentences, describing its purpose and how it fits into the overall product.
 
 ---
 
@@ -73,6 +87,7 @@ Look for patterns such as:
 - `core`
 - `shared`
 - `features`
+- `containers`
 - `domain`
 - `data-access`
 - `ui`
@@ -217,6 +232,6 @@ Prefer describing **what exists today**, not what should exist.
 
 Write the result to:
 
-`.angular-arch-kit/memory/inventory.md`
+`.angular-arch-kit/memory/arch-inventory.md`
 
 This file acts as persistent architectural memory for AI-assisted exploration of the codebase.
